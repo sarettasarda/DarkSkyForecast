@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Dark Sky Forecast</string>
+    <string name="insert_coordinates">Insert coordinates or city to start</string>
+</resources>
