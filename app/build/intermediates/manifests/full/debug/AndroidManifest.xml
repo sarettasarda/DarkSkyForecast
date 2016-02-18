@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="workStation.clock.Clock"
+            android:name="workStation.clock.ClockActivity"
             android:label="@string/title_activity_clock"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

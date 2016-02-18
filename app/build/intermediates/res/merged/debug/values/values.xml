@@ -313,6 +313,7 @@
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <!-- From: file:/C:/Users/salvob/personal/DarkSkyForecast/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="clock_activity">Show Clock</string>
     <string name="insert_coordinates">Insert coordinates or city to start</string>
     <!-- From: file:/C:/Users/salvob/personal/DarkSkyForecast/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/values/values.xml -->
     <eat-comment/>
