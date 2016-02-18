@@ -18,8 +18,8 @@ import org.json.JSONObject;
 
 public class MainActivity extends Activity {
 
-    protected static final String FORECAST_OBJ = "forecastObjForIntent";
-    protected static final int DAY_FORECAST=6;
+    private static final String FORECAST_OBJ = "forecastObjForIntent";
+    private static final int DAY_FORECAST=6;
     private static final String KEY= "7486ee35981e6d909ef1b36ea31a17ec";
     private static final String FORECAST_URL="https://api.forecast.io/forecast/";
 
@@ -36,8 +36,7 @@ public class MainActivity extends Activity {
     private Double longitude = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -48,11 +47,8 @@ public class MainActivity extends Activity {
         longitudeTextView.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
 
         cityTextView= (EditText) findViewById(R.id.city);
-
         errorMessage=(TextView) findViewById(R.id.error_message);
-
         forecastListView= (LinearLayout) findViewById(R.id.forecast_list_view);
-
         weekForecastButton= (Button) findViewById(R.id.week_forecast_button);
     }
 
@@ -195,13 +191,13 @@ public class MainActivity extends Activity {
             forecastListView.removeAllViews();
 
         //Current forecast
-        Forecast currentForecast = new Forecast(forecastObject.jsonCurrentlyObject);
+        Forecast currentForecast = new Forecast.initialize(forecastObject.getCurrentForecastObject(), forecastObject);
         ForecastView currentForecastView = new ForecastView(this, null);
         currentForecastView.setForecastView("Current: "+ currentForecast.printHour(), currentForecast.printSummary(), currentForecast.printForecast());
         forecastListView.addView(currentForecastView);
 
         //Today forecast
-        Forecast dayForecast = new Forecast(forecastObject.jsonWeekObject[0]);
+        Forecast dayForecast = new Forecast(forecastObject.getWeekForecastObject()[0]);
         ForecastView dayForecastView = new ForecastView(this, null);
         dayForecastView.setForecastView("Today: " + dayForecast.printDate(), dayForecast.printSummary(), dayForecast.printForecast());
         forecastListView.addView(dayForecastView);

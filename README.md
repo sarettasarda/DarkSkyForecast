@@ -6,4 +6,4 @@ Android application that uses some of the features of the DarkSkyForecast API: h
 The git includes the AndroidStudio project files.
 The folder DarkSkyForecast/app/src/main/java/saracraba/darkskyforecast/ contains the main classes used to build the application.
 
-A runnable ask can be found in DarkSkyForecast/app/build/outputs/apk/ folder
+A runnable apk can be found in DarkSkyForecast/app/build/outputs/apk/ folder.
