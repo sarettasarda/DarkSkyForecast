@@ -30,32 +30,138 @@ public class Forecast {
     private final Double Pressure;
     private final Double Ozone;
 
-    Forecast(JSONObject jsonObject)
-    {
-        Timestamp= JsonParser.getTime(jsonObject);
-        forecastTime= new Time(Timestamp);
 
-        Summary= JsonParser.getSummary(jsonObject);
-        NearestStormDistance= JsonParser.getNearestStormDistance(jsonObject);
-        NearestStormBearing= JsonParser.getNearestStormBearing(jsonObject);
-        PrecipIntensity = JsonParser.getPrecipIntensity(jsonObject);
-        PrecipProbability = JsonParser.getPrecipProbability(jsonObject);
-        Temperature = JsonParser.getTemperature(jsonObject);
-        ApparentTemperature = JsonParser.getApparentTemperature(jsonObject);
-        DewPoint = JsonParser.getDewPoint(jsonObject);
-        Humidity = JsonParser.getHumidity(jsonObject);
-        WindSpeed = JsonParser.getWindSpeed(jsonObject);
-        WindBearing = JsonParser.getWindBearing(jsonObject);
-        Visibility = JsonParser.getVisibility(jsonObject);
-        CloudCover = JsonParser.getCloudCover(jsonObject);
-        Pressure = JsonParser.getPressure(jsonObject);
-        Ozone = JsonParser.getOzone(jsonObject);
-        TemperatureMin = JsonParser.getTemperatureMin(jsonObject);
-        TemperatureMax = JsonParser.getTemperatureMax(jsonObject);
+    public static class Builder{
+        //Required parameters
+        private final Long Timestamp;
+        private final String Summary;
+
+        //Optional parameters
+        private Double NearestStormDistance=null;
+        private Double NearestStormBearing=null;
+        private Double PrecipIntensity=null;
+        private Double PrecipProbability=null;
+        private Double TemperatureMin=null;
+        private Double TemperatureMax=null;
+        private Double Temperature=null;
+        private Double ApparentTemperature=null;
+        private Double DewPoint=null;
+        private Double Humidity=null;
+        private Double WindSpeed=null;
+        private Double WindBearing=null;
+        private Double Visibility=null;
+        private Double CloudCover=null;
+        private Double Pressure=null;
+        private Double Ozone=null;
+
+        public Builder(Long Timestamp, String Summary){
+            this.Timestamp=Timestamp;
+            this.Summary=Summary;
+        }
+
+        public Builder NearestStormDistance(Double value){
+            NearestStormDistance= value; return this;
+        }
+        public Builder NearestStormBearing(Double value){
+            NearestStormBearing= value; return this;
+        }
+        public Builder PrecipIntensity(Double value){
+            PrecipIntensity= value; return this;
+        }
+        public Builder PrecipProbability(Double value){
+            PrecipProbability= value; return this;
+        }
+        public Builder TemperatureMin(Double value){
+            TemperatureMin= value; return this;
+        }
+        public Builder TemperatureMax(Double value){
+            TemperatureMax= value; return this;
+        }
+        public Builder Temperature(Double value){
+            Temperature= value; return this;
+        }
+        public Builder ApparentTemperature(Double value){
+            ApparentTemperature= value; return this;
+        }
+        public Builder DewPoint(Double value){
+            DewPoint= value; return this;
+        }
+        public Builder Humidity(Double value){
+            Humidity= value; return this;
+        }
+        public Builder WindSpeed(Double value){
+            WindSpeed= value; return this;
+        }
+        public Builder WindBearing(Double value){
+            WindBearing= value; return this;
+        }
+        public Builder Visibility(Double value){
+            Visibility= value; return this;
+        }
+        public Builder CloudCover(Double value){
+            CloudCover= value; return this;
+        }
+        public Builder Pressure(Double value){
+            Pressure= value; return this;
+        }
+        public Builder Ozone(Double value){
+            Ozone= value; return this;
+        }
+
+        public Forecast build(){
+            return new Forecast(this);
+        }
+
+    }
+
+    private Forecast (Builder builder){
+        Timestamp= builder.Timestamp;
+        forecastTime= new Time(Timestamp);
+        Summary = builder.Summary;
+        NearestStormDistance=builder.NearestStormDistance;
+        NearestStormBearing=builder.NearestStormBearing;
+        PrecipIntensity= builder.PrecipIntensity;
+        PrecipProbability= builder.PrecipProbability;
+        TemperatureMin= builder.TemperatureMin;
+        TemperatureMax= builder.TemperatureMax;
+        Temperature= builder.Temperature;
+        ApparentTemperature= builder.ApparentTemperature;
+        DewPoint= builder.DewPoint;
+        Humidity= builder.Humidity;
+        WindSpeed= builder.WindSpeed;
+        WindBearing= builder.WindBearing;
+        Visibility= builder.Visibility;
+        CloudCover= builder.CloudCover;
+        Pressure= builder.Pressure;
+        Ozone= builder.Ozone;
     }
 
     /**
-     *
+     * Build a Forecast object from a JsonObject using a JsonParser
+     */
+     static Forecast initialize(JSONObject jsonObject, JsonParser jsonParser)
+     {
+        return new Forecast.Builder(jsonParser.getTime(jsonObject),  jsonParser.getSummary(jsonObject))
+                .NearestStormDistance(jsonParser.getNearestStormDistance(jsonObject))
+                .NearestStormBearing(jsonParser.getNearestStormBearing(jsonObject))
+                .PrecipIntensity( jsonParser.getPrecipIntensity(jsonObject))
+                .PrecipProbability (jsonParser.getPrecipProbability(jsonObject))
+                .Temperature ( jsonParser.getTemperature(jsonObject))
+                .ApparentTemperature (jsonParser.getApparentTemperature(jsonObject))
+                .DewPoint (jsonParser.getDewPoint(jsonObject))
+                .Humidity (jsonParser.getHumidity(jsonObject))
+                .WindSpeed(jsonParser.getWindSpeed(jsonObject))
+                .WindBearing (jsonParser.getWindBearing(jsonObject))
+                .Visibility (jsonParser.getVisibility(jsonObject))
+                .CloudCover (jsonParser.getCloudCover(jsonObject))
+                .Pressure (jsonParser.getPressure(jsonObject))
+                .Ozone (jsonParser.getOzone(jsonObject))
+                .TemperatureMin (jsonParser.getTemperatureMin(jsonObject))
+                .TemperatureMax (jsonParser.getTemperatureMax(jsonObject))
+                .build();
+    }
+
+    /**
      * @return a formatted text with all not-null forecast values except time and summary
      */
     String printForecast()
@@ -135,7 +241,6 @@ public class Forecast {
     }
 
     /**
-     *
      * @return a formatted text of the forecast date --> MONTH/DAY/YEAR
      */
     String printDate()
@@ -177,7 +282,6 @@ public class Forecast {
     }
 
     /**
-     *
      * @return a formatted text of the forecast hour --> hh:mm AM/PM
      */
     String printHour()
@@ -190,7 +294,6 @@ public class Forecast {
     }
 
     /**
-     *
      * @return a formatted text of the forecast summary
      */
     String printSummary()

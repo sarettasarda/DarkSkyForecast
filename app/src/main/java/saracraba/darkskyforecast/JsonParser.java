@@ -12,15 +12,18 @@ import org.json.JSONObject;
 public class JsonParser
 {
     private JSONObject jsonMainObject;
-    protected JSONObject jsonCurrentlyObject;
-    protected JSONObject [] jsonWeekObject;
+    private JSONObject jsonCurrentlyObject;
+    private JSONObject [] jsonWeekObject;
+    private int dayForecast=1;
 
-    JsonParser (String jsonRawString) throws IllegalArgumentException
+    JsonParser (String jsonRawString, int dayForecast) throws IllegalArgumentException
     {
-        if (jsonRawString==null || jsonRawString.isEmpty()) {
-            throw new IllegalArgumentException("JSON String must be not null and not empty");
+        if (jsonRawString==null || jsonRawString.isEmpty() || dayForecast<0 || dayForecast>6) {
+            throw new IllegalArgumentException("JSON String must be not null and not empty, " +
+                    "dayForecast must be a integer [0,6]");
         }
 
+        this.dayForecast=dayForecast;
         ParseJsonString(jsonRawString);
     }
 
@@ -43,9 +46,9 @@ public class JsonParser
             JSONObject jsonDailyObject= jsonMainObject.getJSONObject("daily");
             JSONArray jsonDailyDataObject= jsonDailyObject.getJSONArray("data");
 
-            jsonWeekObject = new JSONObject[MainActivity.DAY_FORECAST];
+            jsonWeekObject = new JSONObject[dayForecast];
 
-            for (int i=0; i< MainActivity.DAY_FORECAST; i++)
+            for (int i=0; i<dayForecast; i++)
             {
                 jsonWeekObject[i]=jsonDailyDataObject.getJSONObject(i);
             }
@@ -329,6 +332,14 @@ public class JsonParser
             e.printStackTrace();
             return null;
         }
+    }
+
+    JSONObject getCurrentForecastObject(){
+        return jsonCurrentlyObject;
+    }
+
+    JSONObject [] getWeekForecastObject(){
+        return jsonWeekObject;
     }
 
 }

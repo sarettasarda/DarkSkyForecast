@@ -22,8 +22,7 @@ public class WeekForecastActivity extends Activity
         forecastListView= (LinearLayout) findViewById(R.id.forecast_list_view);
         forecastJsonString= getIntent().getStringExtra(MainActivity.FORECAST_OBJ);
 
-        try
-        {
+        try {
             forecastObject = new JsonParser(forecastJsonString);
         }
         catch (IllegalArgumentException e){
