@@ -16,6 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import workStation.clock.ClockActivity;
+
 public class MainActivity extends Activity {
 
     protected static final String FORECAST_OBJ = "forecastObjForIntent";
@@ -54,6 +56,16 @@ public class MainActivity extends Activity {
         forecastListView= (LinearLayout) findViewById(R.id.forecast_list_view);
 
         weekForecastButton= (Button) findViewById(R.id.week_forecast_button);
+
+        final Button clockButton = (Button) findViewById(R.id.clock_button);
+        clockButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(MainActivity.this, ClockActivity.class );
+                startActivity(i);
+
+            }
+        });
     }
 
     /**
