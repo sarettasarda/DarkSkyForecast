@@ -2,10 +2,12 @@ package saracraba.darkskyforecast;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,7 +40,7 @@ public class MainActivity extends Activity {
 
         cityTextView= (EditText) findViewById(R.id.city);
         errorMessage=(TextView) findViewById(R.id.error_message);
-        weekForecastButton= (Button) findViewById(R.id.week_forecast_button);
+
 
         final Button clockButton = (Button) findViewById(R.id.clock_button);
         clockButton.setOnClickListener(new View.OnClickListener(){
