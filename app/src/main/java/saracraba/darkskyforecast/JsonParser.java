@@ -11,53 +11,127 @@ import org.json.JSONObject;
  */
 public class JsonParser
 {
-    private JSONObject jsonMainObject;
-    private JSONObject jsonCurrentlyObject;
-    private JSONObject [] jsonWeekObject;
-    private int dayForecast=1;
+    static final int DAY_AT_WEEK=6;
 
-    JsonParser (String jsonRawString, int dayForecast) throws IllegalArgumentException
-    {
-        if (jsonRawString==null || jsonRawString.isEmpty() || dayForecast<0 || dayForecast>6) {
-            throw new IllegalArgumentException("JSON String must be not null and not empty, " +
-                    "dayForecast must be a integer [0,6]");
+    /**
+     * Parse the Json string and return the current json object associated
+     *
+     * @param jsonRawString the downloaded raw Json string
+     * @return the json object associated at the string
+     */
+    static JSONObject getJsonMainObject(String jsonRawString) throws IllegalArgumentException {
+        if (jsonRawString==null || jsonRawString.isEmpty()) {
+            throw new IllegalArgumentException("JSON String must be not null and not empty.");
         }
 
-        this.dayForecast=dayForecast;
-        ParseJsonString(jsonRawString);
+        try{
+            //getting main json object
+            return  new JSONObject(jsonRawString);
+
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
-     * Parse the Json string and saves the current json object and the daily json array into java json objects
      *
-     * @param jsonRawString the downloaded raw Json string
+     * @param jsonMainObject is the main jsonObject downloaded
+     * @return jsonObject of the current day
      */
-    private void ParseJsonString(String jsonRawString)
-    {
-        try
-        {
-            //getting main json object
-            jsonMainObject = new JSONObject(jsonRawString);
-
-            //getting current json object
-            jsonCurrentlyObject = jsonMainObject.getJSONObject("currently");
-
-            //getting data of the daily json object
-            JSONObject jsonDailyObject= jsonMainObject.getJSONObject("daily");
-            JSONArray jsonDailyDataObject= jsonDailyObject.getJSONArray("data");
-
-            jsonWeekObject = new JSONObject[dayForecast];
-
-            for (int i=0; i<dayForecast; i++)
-            {
-                jsonWeekObject[i]=jsonDailyDataObject.getJSONObject(i);
-            }
+    static JSONObject getJsonCurrentlyObject (JSONObject jsonMainObject){
+        try{
+            return jsonMainObject.getJSONObject("currently");
         }
-        catch (JSONException e)
-        {
+        catch (JSONException e) {
             e.printStackTrace();
         }
+        return null;
     }
+
+    /**
+     *
+     * @param jsonMainObject is the main jsonObject downloaded
+     * @return jsonArray of the week
+     */
+    static JSONArray getJsonWeekArray(JSONObject jsonMainObject){
+        try{
+            //getting data of the daily json object
+            JSONObject jsonDailyObject= jsonMainObject.getJSONObject("daily");
+            return  jsonDailyObject.getJSONArray("data");
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * @param  jsonWeekArray is the jsonArray of the week from the main object
+     * @param day day number to get from the jsonArray
+     * @return jsonObject of day "day" of the week
+     */
+    JSONObject getJsonWeekObjectfromArray(JSONArray jsonWeekArray, int day)throws IllegalArgumentException {
+        if (day>6 || day<0) {
+            throw new IllegalArgumentException("Day must be a integer between [0,6]");
+        }
+
+        try{
+            return  jsonWeekArray.getJSONObject(day);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * @param  jsonMainObject is the main jsonObject downloaded
+     * @param day day number to get from the jsonArray
+     * @return jsonObject of day "day" of the week
+     */
+    static JSONObject getJsonWeekObject(JSONObject jsonMainObject, int day)throws IllegalArgumentException {
+        if (day>6 || day<0) {
+            throw new IllegalArgumentException("Day must be a integer between [0,6]");
+        }
+
+        try{
+            JSONArray jsonWeekArray= getJsonWeekArray(jsonMainObject);
+            return jsonWeekArray.getJSONObject(day);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * @param jsonMainObject is the main jsonObject downloaded
+     * @return json object array of the week
+     */
+    static JSONObject[] getJsonWeekOjectArray(JSONObject jsonMainObject){
+        try{
+            JSONObject [] jsonObjectsArray= new JSONObject[DAY_AT_WEEK];
+            JSONArray jsonWeekArray= getJsonWeekArray(jsonMainObject);
+
+            for(int i= 0; i< DAY_AT_WEEK; i++){
+                jsonObjectsArray[i]= jsonWeekArray.getJSONObject(i);
+            }
+
+            return jsonObjectsArray;
+
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
     /**
      *  The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs
@@ -332,14 +406,6 @@ public class JsonParser
             e.printStackTrace();
             return null;
         }
-    }
-
-    JSONObject getCurrentForecastObject(){
-        return jsonCurrentlyObject;
-    }
-
-    JSONObject [] getWeekForecastObject(){
-        return jsonWeekObject;
     }
 
 }

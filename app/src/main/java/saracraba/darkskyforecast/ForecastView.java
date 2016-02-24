@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -15,12 +16,14 @@ class ForecastView extends View
     private TextView day;
     private TextView summary;
     private TextView forecast;
+    private Context context;
 
     ForecastView(Context context, AttributeSet attrs){
         super(context, attrs);
 
-        LayoutInflater inflater = (LayoutInflater)   getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.forecast_view, null);
+        this.context=context;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout view = (LinearLayout) inflater.inflate(R.layout.forecast_view, null);
 
         day= (TextView) findViewById(R.id.day);
         summary= (TextView) findViewById(R.id.summary);
@@ -33,8 +36,9 @@ class ForecastView extends View
      * @param forecast forecast details
      */
     void setForecastView(String day, String summary, String forecast) {
+        //this.day= new TextView(context);
         this.day.setText(day);
-        this.summary.setText(summary);
-        this.forecast.setText(forecast);
+        //this.summary.setText(summary);
+        //this.forecast.setText(forecast);
     }
 }

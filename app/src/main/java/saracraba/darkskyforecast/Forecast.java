@@ -139,25 +139,25 @@ public class Forecast {
     /**
      * Build a Forecast object from a JsonObject using a JsonParser
      */
-     static Forecast initialize(JSONObject jsonObject, JsonParser jsonParser)
+     static Forecast initialize(JSONObject jsonObject)
      {
-        return new Forecast.Builder(jsonParser.getTime(jsonObject),  jsonParser.getSummary(jsonObject))
-                .NearestStormDistance(jsonParser.getNearestStormDistance(jsonObject))
-                .NearestStormBearing(jsonParser.getNearestStormBearing(jsonObject))
-                .PrecipIntensity( jsonParser.getPrecipIntensity(jsonObject))
-                .PrecipProbability (jsonParser.getPrecipProbability(jsonObject))
-                .Temperature ( jsonParser.getTemperature(jsonObject))
-                .ApparentTemperature (jsonParser.getApparentTemperature(jsonObject))
-                .DewPoint (jsonParser.getDewPoint(jsonObject))
-                .Humidity (jsonParser.getHumidity(jsonObject))
-                .WindSpeed(jsonParser.getWindSpeed(jsonObject))
-                .WindBearing (jsonParser.getWindBearing(jsonObject))
-                .Visibility (jsonParser.getVisibility(jsonObject))
-                .CloudCover (jsonParser.getCloudCover(jsonObject))
-                .Pressure (jsonParser.getPressure(jsonObject))
-                .Ozone (jsonParser.getOzone(jsonObject))
-                .TemperatureMin (jsonParser.getTemperatureMin(jsonObject))
-                .TemperatureMax (jsonParser.getTemperatureMax(jsonObject))
+        return new Forecast.Builder(JsonParser.getTime(jsonObject),  JsonParser.getSummary(jsonObject))
+                .NearestStormDistance(JsonParser.getNearestStormDistance(jsonObject))
+                .NearestStormBearing(JsonParser.getNearestStormBearing(jsonObject))
+                .PrecipIntensity(JsonParser.getPrecipIntensity(jsonObject))
+                .PrecipProbability(JsonParser.getPrecipProbability(jsonObject))
+                .Temperature(JsonParser.getTemperature(jsonObject))
+                .ApparentTemperature(JsonParser.getApparentTemperature(jsonObject))
+                .DewPoint(JsonParser.getDewPoint(jsonObject))
+                .Humidity(JsonParser.getHumidity(jsonObject))
+                .WindSpeed(JsonParser.getWindSpeed(jsonObject))
+                .WindBearing(JsonParser.getWindBearing(jsonObject))
+                .Visibility(JsonParser.getVisibility(jsonObject))
+                .CloudCover(JsonParser.getCloudCover(jsonObject))
+                .Pressure(JsonParser.getPressure(jsonObject))
+                .Ozone(JsonParser.getOzone(jsonObject))
+                .TemperatureMin(JsonParser.getTemperatureMin(jsonObject))
+                .TemperatureMax(JsonParser.getTemperatureMax(jsonObject))
                 .build();
     }
 
