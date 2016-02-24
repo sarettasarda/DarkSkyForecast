@@ -6,7 +6,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Day"
         android:id="@+id/day"
         android:textStyle="bold"
         android:textSize="15dp" />
@@ -14,13 +13,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Summary"
         android:id="@+id/summary"
         android:textStyle="italic" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="text"
+        android:text="1"
         android:id="@+id/forecast" />
 </LinearLayout><!-- From: file:/Volumes/Sara_hd/Progetti/work-station/app/src/main/res/layout/forecast_view.xml -->

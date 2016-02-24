@@ -100,33 +100,12 @@
 
     </GridLayout>
 
-    <ScrollView
+    <ListView
+        android:id="@+id/forecast_list_view"
         android:layout_width="fill_parent"
-        android:layout_height="221dp"
-        android:id="@+id/scrollView"
-        android:layout_below="@+id/gridLayout"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/week_forecast_button">
-
-        <LinearLayout
-            android:id="@+id/forecast_list_view"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </LinearLayout>
-    </ScrollView>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Week forecast"
-        android:id="@+id/week_forecast_button"
-        android:layout_gravity="right|bottom"
-        android:visibility="invisible"
-        android:onClick="onWeekForecastBtnClick"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/scrollView" />
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/gridLayout">
+    </ListView>
 
 </RelativeLayout>
 <!-- From: file:/Volumes/Sara_hd/Progetti/work-station/app/src/main/res/layout/activity_main.xml -->

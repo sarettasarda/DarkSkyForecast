@@ -14,26 +14,9 @@ import java.net.URL;
  */
 public class JSONDownload extends AsyncTask<String, String, String>
 {
-    //Call back for results
-    private JSONResult jsonResult;
     //Http connection
     private HttpURLConnection urlConnection;
-    //Progress dialog
-    private ProgressDialog dialog;
 
-    JSONDownload(MainActivity mainActivityContext, JSONResult listener)
-    {
-        dialog =new ProgressDialog(mainActivityContext);
-        jsonResult=listener;
-    }
-
-    @Override
-    protected void onPreExecute()
-    {
-        //Show progress dialog
-        dialog.setMessage("Please wait");
-        dialog.show();
-    }
 
     @Override
     protected String  doInBackground(String... query)
@@ -65,16 +48,4 @@ public class JSONDownload extends AsyncTask<String, String, String>
         return result.toString();
     }
 
-    @Override
-    protected void onPostExecute(String result)
-    {
-        //Dismiss the dialog
-        if (dialog.isShowing())
-        {
-            dialog.dismiss();
-        }
-
-        //return Json object as a string
-        jsonResult.onDownloadCompleted(result);
-    }
 }

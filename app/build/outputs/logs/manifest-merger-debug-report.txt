@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:2:1-29:12
+ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:2:1-24:12
 	xmlns:android
 		ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -18,7 +18,7 @@ ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.x
 	android:name
 		ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:7:5-27:19
+ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:7:5-22:19
 MERGED from [com.android.support:appcompat-v7:23.1.1] /Volumes/Sara_hd/Progetti/work-station/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.1.1] /Volumes/Sara_hd/Progetti/work-station/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
 	android:supportsRtl
@@ -47,12 +47,6 @@ category#android.intent.category.LAUNCHER
 ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:19:17-77
 	android:name
 		ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:19:27-74
-activity#saracraba.darkskyforecast.WeekForecastActivity
-ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:22:9-26:20
-	android:name
-		ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:22:19-55
-intent-filter#android.intent.category.LAUNCHER
-ADDED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml:23:13-25:29
 uses-sdk
 INJECTED from /Volumes/Sara_hd/Progetti/work-station/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.1.1] /Volumes/Sara_hd/Progetti/work-station/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:20:5-43
